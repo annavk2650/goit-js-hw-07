@@ -38,9 +38,13 @@ function openImage(event) {
   `);
   instance.show();
 
-  gallery.addEventListener('keydown', onEscPress => {
-    if (onEscPress.code === 'Escape') {
+  gallery.addEventListener('keydown', closeImage);
+
+  function closeImage(event) {
+    console.log(event);
+    if (event.code === 'Escape') {
       instance.close();
+      gallery.removeEventListener('keydown', closeImage);
     }
-  });
+  }
 }
